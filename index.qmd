@@ -23,3 +23,7 @@ df_answer <- df_schedule %>%
 
 DT::datatable(df_answer, rownames = FALSE)
 ```
+
+_NOTE:_ `{nflfastR}` does have some missing wind data for the 2022 season, so above should not be considered exhaustive. Most of the missing data is from early in the season however. Wind tends to pick up late in the fall/winter, so hopefully the missing data here does not include too many of the extreme values for which we are interested.
+
+Analysis inspired by [@ChrisAllenFFWX](https://twitter.com/ChrisAllenFFWX)'s work on weather effects and passing, e.g., this [2018 article series](https://www.4for4.com/2018/weather-effects-and-fantasy-football-part-3) .
