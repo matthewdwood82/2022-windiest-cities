@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "2022-windiest-cities",
+    "section": "",
+    "text": "Per {nflfastR}, during the regular season last year which home NFL outdoor stadium(s) had the fastest wind speed recorded at kickoff?\n\nlibrary(tidyverse)\nlibrary(nflfastR)\nlibrary(DT)\n\ndf_schedule <- nflfastR::fast_scraper_schedules(2022) %>% \n  dplyr::select(game_id:gametime, away_team, home_team, location, roof, wind) %>% \n  dplyr::filter(game_type == \"REG\", location == \"Home\", roof == \"outdoors\") \n\ndf_answer <- df_schedule %>% \n  dplyr::arrange(desc(wind)) %>%\n  dplyr::mutate(rank = dplyr::row_number()) %>% \n  dplyr::select(rank, gameday, week, gametime, away_team, home_team, wind)\n\nDT::datatable(df_answer, rownames = FALSE)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]

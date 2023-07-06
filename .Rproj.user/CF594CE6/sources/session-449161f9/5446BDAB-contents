@@ -1,0 +1,25 @@
+---
+title: "2022-windiest-cities"
+---
+
+Per `{nflfastR}`, during the regular season last year which home NFL outdoor stadium(s) had the fastest wind speed recorded at kickoff? 
+
+```{r}
+#| warning: FALSE
+#| echo: TRUE
+
+library(tidyverse)
+library(nflfastR)
+library(DT)
+
+df_schedule <- nflfastR::fast_scraper_schedules(2022) %>% 
+  dplyr::select(game_id:gametime, away_team, home_team, location, roof, wind) %>% 
+  dplyr::filter(game_type == "REG", location == "Home", roof == "outdoors") 
+
+df_answer <- df_schedule %>% 
+  dplyr::arrange(desc(wind)) %>%
+  dplyr::mutate(rank = dplyr::row_number()) %>% 
+  dplyr::select(rank, gameday, week, gametime, away_team, home_team, wind)
+
+DT::datatable(df_answer, rownames = FALSE)
+```
